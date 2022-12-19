@@ -1,3 +1,13 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('./assets//fonts//Roboto-Regular.ttf');
+    }
+
+body {
+    color:#1C1C1C;
+    font-family: Roboto;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -12,12 +22,12 @@
 .tabs-triggers__item {
     display: flex;
     align-items: center;
-    color: #1C1C1C;
     text-align: center;
     padding: 16px 152px;
     font-size: 18px;
     border-radius: 16px;
     text-decoration: none;
+    color: unset
 }
 
 .tabs-content__item {
