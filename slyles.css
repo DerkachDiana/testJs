@@ -43,3 +43,24 @@ body {
     background-color: #EDF9FF;
     color: #117DC1;
 }
+
+.button-show {
+    width: 32px;
+    height: 32px;
+    background-size: cover;
+}
+
+.button-show--more {
+    background-image: url('./assets/icons/Open.png');
+}
+
+.button-show--less {
+    background-image: url('./assets/icons/Close.png');
+}
+
+.user-item {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    padding: 24px 0;
+}
