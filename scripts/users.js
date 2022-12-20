@@ -1,4 +1,5 @@
 function setShowLessButton(buttonElement) {
+    console.log(buttonElement.parentNode.parentNode)
     buttonElement.classList.toggle('button-show--more');
     buttonElement.classList.toggle('button-show--less');
 }
@@ -7,11 +8,23 @@ function usersContainerHandler(elements) {
     if(!elements.closest('.button-show')) {
         return;
     }
-    const userContainer = elements.closest('.user-container');
 
-    setShowLessButton(elements.closest('.button-show')); 
-    renderAlbums(userContainer);
+    const userContainer = elements.closest('.user-container');
+    const albumsContainer = elements.parentNode.parentNode.querySelector('.albums-container');
+    const buttonShow = elements.closest('.button-show');
+    const parentsContainerName = buttonShow.parentNode.parentNode.className;
     
+    if(parentsContainerName === 'user-container') {
+        setShowLessButton(buttonShow); 
+    }
+    
+    if(albumsContainer){
+       albumsContainer.remove();
+    }
+
+    if(elements.closest('.button-show--less') && !albumsContainer) {
+        renderAlbums(userContainer);
+    }    
 }
 
 async function renderUsers() {
@@ -21,15 +34,13 @@ async function renderUsers() {
     users.forEach((user) => {
         const userContainer = document.createElement('div');
         const userItem = document.createElement('div');
-        const showButton = document.createElement('div');
+        const showButton = renderShowButton();
         const userName = document.createElement('div');
 
         userContainer.id = user.id;
 
         userContainer.className = 'user-container';
-        userItem.className = 'user-item';
-        showButton.className = 'button-show';
-        showButton.classList.add('button-show--more');
+        userItem.className = 'rendered-item';
 
         userName.innerHTML = user.name;
 

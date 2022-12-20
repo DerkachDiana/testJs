@@ -1,27 +1,31 @@
+function renderAlbumItem(album) {
+    const albumItem = document.createElement('div');
+    const showButton = renderShowButton()
+    const albumTitle = document.createElement('div');
+
+    albumItem.id = album.id;
+
+    albumItem.classList.add('rendered-item');
+    albumItem.classList.add('album-padding');
+
+    albumTitle.innerHTML = album.title;
+
+    albumItem.appendChild(showButton);
+    albumItem.appendChild(albumTitle);
+
+    return albumItem;
+}
+
 async function renderAlbums(userContainer) {
     const albums = await getAlbums(userContainer.id);
-    console.log(albums);
     const albumsContainer = document.createElement('div');
 
+    albumsContainer.className = 'albums-container';
+
     albums.forEach((album) => {
-        const albumItem = document.createElement('div');
-        const showButton = document.createElement('div');
-        const albumTitle = document.createElement('div');
-
-        albumItem.id = album.id;
-
-        showButton.className = 'button-show';
-        showButton.classList.add('button-show--more');
-
-        albumTitle.innerHTML = album.title;
-        console.log(albumTitle);
-        albumItem.appendChild(showButton);
-        albumItem.appendChild(albumTitle);
-        // albumsContainer.appendChild(albumContainer);
-
-        userContainer.appendChild(albumItem);
+        const albumItem = renderAlbumItem(album);
+        albumsContainer.appendChild(albumItem);
     })
 
-    
-    console.log(userContainer);
+    userContainer.appendChild(albumsContainer);
 }
