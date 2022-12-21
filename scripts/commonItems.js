@@ -1,12 +1,8 @@
 function renderShowButton() {
     const showButton = document.createElement('div');
     showButton.className = 'button-show';
-    showButton.classList.add('button-show--more')
+    showButton.classList.add('button-show--show')
 
     return showButton;
 }
 
-function setShowLessButton(buttonElement) {
-    buttonElement.classList.toggle('button-show--more');
-    buttonElement.classList.toggle('button-show--less');
-}

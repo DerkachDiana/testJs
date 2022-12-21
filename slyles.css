@@ -50,26 +50,35 @@ body {
     background-size: cover;
 }
 
-.button-show--more {
+.button-show--show {
     background-image: url('./assets/icons/Open.png');
 }
 
-.button-show--less {
+.button-show--hide {
     background-image: url('./assets/icons/Close.png');
 }
 
-.rendered-item {
+.user-item,
+.album-item {
     display: flex;
     gap: 24px;
     align-items: center;
     padding: 24px 0;
 }
 
-.album-padding {
-    padding-left: 56px;
+.offset-left {
+    margin-left: 56px;
 }
 
 .photo-item {
     width: 150px;
     height: 150px;
+}
+
+.photos-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 42px;
+    width: 534px;
 }

@@ -1,4 +1,9 @@
 async function getPhotos(albumId) {
-    const photos = await fetch(`https://json.medrocket.ru/photos?albumId=${albumId}`);
-    return await photos.json();
+    try {
+        const photos = await fetch(`https://json.medrocket.ru/photos?albumId=${albumId}`);
+        return await photos.json();
+    } catch(e) {
+        throw new Error('PhotoApi error ', e);
+    }
+    
 }
