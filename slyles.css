@@ -58,9 +58,18 @@ body {
     background-image: url('./assets/icons/Close.png');
 }
 
-.user-item {
+.rendered-item {
     display: flex;
     gap: 24px;
     align-items: center;
     padding: 24px 0;
+}
+
+.album-padding {
+    padding-left: 56px;
+}
+
+.photo-item {
+    width: 150px;
+    height: 150px;
 }
