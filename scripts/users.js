@@ -1,53 +1,75 @@
-function usersContainerHandler(elements) {
-    if(!elements.closest('.button-show')) {
+function removeRouter(buttonElement) {
+    const parentContainer = buttonElement.parentNode;
+
+    if(parentContainer.classList.contains('user-item')) {
+        removeAlbums(parentContainer.parentNode);
+    }
+    if(parentContainer.classList.contains('album-item')) {
+        removePhotos(parentContainer.parentNode);
+    }
+}
+
+function insertRouter(buttonElement) {
+    const parentContainer = buttonElement.parentNode;
+
+    if(parentContainer.classList.contains('user-item')) {
+        insertAlbums(parentContainer.parentNode);
+    }
+    if(parentContainer.classList.contains('album-item')) {
+        insertPhotos(parentContainer.parentNode);
+    }
+}
+
+function containerClickHandler(element) {
+    if(!element.classList.contains('button-show')) {
         return;
     }
 
-    const userContainer = elements.closest('.user-container');
-    const albumsContainer = elements.parentNode.parentNode.querySelector('.albums-container');
-    const buttonShow = elements.closest('.button-show');
-    const parentsContainerName = buttonShow.parentNode.parentNode.className;
-
-    if(parentsContainerName === 'user-container') {
-        setShowLessButton(buttonShow); 
-    }
-    
-    if(albumsContainer){
-       albumsContainer.remove();
+    if(element.classList.contains('button-show--show')) {
+        insertRouter(element);
+        element.classList.toggle('button-show--show');
+        element.classList.toggle('button-show--hide');
+        return;
     }
 
-    if(elements.closest('.button-show--less') && !albumsContainer) {
-        renderAlbums(userContainer);
-    }    
+    if(element.classList.contains('button-show--hide')) {
+        removeRouter(element);
+        element.classList.toggle('button-show--hide');
+        element.classList.toggle('button-show--show');
+        return;
+    }
 }
 
 async function renderUsers() {
     const users = await getUsers();
-    const usersContainer = document.getElementById('users-container');
+    const container = document.getElementById('container');
 
     users.forEach((user) => {
-        const userContainer = document.createElement('div');
-        const userItem = document.createElement('div');
-        const showButton = renderShowButton();
-        const userName = document.createElement('div');
-
-        userContainer.id = user.id;
-
-        userContainer.className = 'user-container';
-        userItem.className = 'rendered-item';
-
-        userName.innerHTML = user.name;
-
-        userItem.appendChild(showButton);
-        userItem.appendChild(userName);
-        userContainer.appendChild(userItem);
-        usersContainer.appendChild(userContainer);
+        const userContainer = userItemCreator(user);
+        container.appendChild(userContainer);
     });
 
-    usersContainer.addEventListener('click', (e) => {
-        usersContainerHandler(e.target);
-        albumContainerHandler(e.target);
+    container.addEventListener('click', (e) => {
+        containerClickHandler(e.target);
     })
 }
 
+function userItemCreator(user) {
+    const userContainer = document.createElement('div');
+    const userItem = document.createElement('div');
+    const showButton = renderShowButton();
+    const userName = document.createElement('div');
+
+    userName.innerText = user.name;
+    userContainer.dataset.id = user.id;
+
+    userContainer.className = 'user-container';
+    userItem.classList.add('user-item');
+
+    userItem.appendChild(showButton);
+    userItem.appendChild(userName);
+    userContainer.appendChild(userItem);
+    
+    return userContainer;
+}
 renderUsers()
