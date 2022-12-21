@@ -20,32 +20,10 @@ function insertRouter(buttonElement) {
     }
 }
 
-function containerClickHandler(element) {
-    if(!(element.classList.contains('button-show') || element.classList.contains('favoriets-button'))) {
-        return;
-    }
-
-    if(element.classList.contains('favoriets-button')) {
-        favorietsButtonClickHandler(element);  
-    }
-
-    element.classList.toggle('button-show--show');
-    element.classList.toggle('button-show--hide');
-
-    if(element.classList.contains('button-show--hide')) {
-        insertRouter(element);
-        return;
-    }
-
-    if(element.classList.contains('button-show--show')) {
-        removeRouter(element);
-        return;
-    }
-}
-
 async function renderUsers() {
     const users = await getUsers();
     const container = document.getElementById('container');
+    const favoritesTab = document.getElementById('favorites-container');
 
     users.forEach((user) => {
         const userContainer = userItemCreator(user);
@@ -54,6 +32,10 @@ async function renderUsers() {
 
     container.addEventListener('click', (e) => {
         containerClickHandler(e.target);
+    });
+
+    favoritesTab.addEventListener('click', (e) => {
+        favoritesButtonClickHandler(e.target);
     })
 }
 

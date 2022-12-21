@@ -38,7 +38,7 @@ async function renderAlbums(userContainer) {
     
     albums.forEach((album) => {
         const albumContainer = albumItemCreator(album);
-        console.log(albumContainer);
+        
         albumsContainer.appendChild(albumContainer);
     })
 

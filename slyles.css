@@ -45,13 +45,13 @@ body {
 }
 
 .button-show,
-.favoriets-button {
+.favorites-button {
     width: 32px;
     height: 32px;
     background-size: cover;
 }
 
-.favoriets-button {
+.favorites-button {
     position: absolute;
     left: 110px;
     top: 8px;
@@ -65,11 +65,11 @@ body {
     background-image: url('./assets/icons/Close.png');
 }
 
-.favoriets-button--active {
+.favorites-button--active {
     background-image: url('./assets/icons/star_active.png');
 }
 
-.favoriets-button--empty{
+.favorites-button--empty{
     background-image: url('./assets/icons/star_empty.png');
 }
 
@@ -94,7 +94,8 @@ body {
     height: 150px;
 }
 
-.photos-container {
+.photos-container,
+#favorites-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

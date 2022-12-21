@@ -26,15 +26,18 @@ async function renderPhotos(albumContainer) {
 function photoItemCreator(photo) {
     const photoItem = document.createElement('div');
     const photoElement = document.createElement('img');
-    const favorietsButton = document.createElement('div');
+    const favoritesButton = document.createElement('div');
 
-    favorietsButton.classList.add('favoriets-button', 'favoriets-button--empty');
+    photoItem.id = 'photo-' + photo.id;
+
+    favoritesButton.classList.add('favorites-button', 'favorites-button--empty');
     photoItem.className = 'photo-container';
     photoElement.className = 'photo-item';
+
     photoElement.src = photo.url;
 
     photoItem.appendChild(photoElement);
-    photoItem.appendChild(favorietsButton);
+    photoItem.appendChild(favoritesButton);
 
     return photoItem;
 }
