@@ -21,21 +21,24 @@ function insertRouter(buttonElement) {
 }
 
 function containerClickHandler(element) {
-    if(!element.classList.contains('button-show')) {
+    if(!(element.classList.contains('button-show') || element.classList.contains('favoriets-button'))) {
+        return;
+    }
+
+    if(element.classList.contains('favoriets-button')) {
+        favorietsButtonClickHandler(element);  
+    }
+
+    element.classList.toggle('button-show--show');
+    element.classList.toggle('button-show--hide');
+
+    if(element.classList.contains('button-show--hide')) {
+        insertRouter(element);
         return;
     }
 
     if(element.classList.contains('button-show--show')) {
-        insertRouter(element);
-        element.classList.toggle('button-show--show');
-        element.classList.toggle('button-show--hide');
-        return;
-    }
-
-    if(element.classList.contains('button-show--hide')) {
         removeRouter(element);
-        element.classList.toggle('button-show--hide');
-        element.classList.toggle('button-show--show');
         return;
     }
 }

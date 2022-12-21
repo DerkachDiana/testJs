@@ -6,3 +6,8 @@ function renderShowButton() {
     return showButton;
 }
 
+function favorietsButtonClickHandler(button) {
+    button.classList.toggle('favoriets-button--empty');
+    button.classList.toggle('favoriets-button--active');
+}
+

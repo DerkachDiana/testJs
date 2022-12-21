@@ -44,10 +44,17 @@ body {
     color: #117DC1;
 }
 
-.button-show {
+.button-show,
+.favoriets-button {
     width: 32px;
     height: 32px;
     background-size: cover;
+}
+
+.favoriets-button {
+    position: absolute;
+    left: 110px;
+    top: 8px;
 }
 
 .button-show--show {
@@ -56,6 +63,14 @@ body {
 
 .button-show--hide {
     background-image: url('./assets/icons/Close.png');
+}
+
+.favoriets-button--active {
+    background-image: url('./assets/icons/star_active.png');
+}
+
+.favoriets-button--empty{
+    background-image: url('./assets/icons/star_empty.png');
 }
 
 .user-item,
@@ -68,6 +83,10 @@ body {
 
 .offset-left {
     margin-left: 56px;
+}
+
+.photo-container {
+    position: relative;
 }
 
 .photo-item {
