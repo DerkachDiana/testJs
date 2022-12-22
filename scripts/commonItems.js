@@ -6,18 +6,17 @@ function containerClickHandler(element) {
     if(element.classList.contains('favorites-button')) {
         favoritesButtonClickHandler(element);  
     }
+    const parentContainer = element.parentNode;
 
     element.classList.toggle('button-show--show');
     element.classList.toggle('button-show--hide');
 
-    if(element.classList.contains('button-show--hide')) {
-        insertRouter(element);
-        return;
+    if(parentContainer.classList.contains('user-item')) {
+        userRouter(element);
     }
 
-    if(element.classList.contains('button-show--show')) {
-        removeRouter(element);
-        return;
+    if(parentContainer.classList.contains('album-item')) {
+        albumRouter(element);
     }
 }
 
@@ -39,7 +38,7 @@ function addToFavorites(button) {
 function removeFromFavorites(button) {
     const favoritesContainer = document.getElementById('favorites-container');
     const photoContainerId = button.parentNode.id;
-    console.log(favoritesContainer);
+
     favoritesContainer.querySelector(`#${photoContainerId}`).remove();
 }
 

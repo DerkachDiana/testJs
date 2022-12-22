@@ -1,5 +1,19 @@
+function albumRouter(buttonElement) {
+    if(buttonElement.classList.contains('button-show--hide')) {
+        insertPhotos(buttonElement.parentNode.parentNode);
+        return;
+    }
+
+    if(buttonElement.classList.contains('button-show--show')) {
+        removePhotos(buttonElement.parentNode.parentNode);
+        return;
+    }
+}
+
 function insertAlbums(userContainer) {
+    console.log(userContainer);
     if(!userContainer.querySelector('.albums-container')){
+        
         renderAlbums(userContainer);
     } 
 }

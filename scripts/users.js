@@ -1,22 +1,12 @@
-function removeRouter(buttonElement) {
-    const parentContainer = buttonElement.parentNode;
-
-    if(parentContainer.classList.contains('user-item')) {
-        removeAlbums(parentContainer.parentNode);
+function userRouter(buttonElement) {
+    if(buttonElement.classList.contains('button-show--hide')) {
+        insertAlbums(buttonElement.parentNode.parentNode);
+        return;
     }
-    if(parentContainer.classList.contains('album-item')) {
-        removePhotos(parentContainer.parentNode);
-    }
-}
 
-function insertRouter(buttonElement) {
-    const parentContainer = buttonElement.parentNode;
-
-    if(parentContainer.classList.contains('user-item')) {
-        insertAlbums(parentContainer.parentNode);
-    }
-    if(parentContainer.classList.contains('album-item')) {
-        insertPhotos(parentContainer.parentNode);
+    if(buttonElement.classList.contains('button-show--show')) {
+        removeAlbums(buttonElement.parentNode.parentNode);
+        return;
     }
 }
 
