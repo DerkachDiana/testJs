@@ -23,6 +23,11 @@ async function renderPhotos(albumContainer) {
     albumContainer.appendChild(photosContainer);
 }
 
+function isPhotoInFavorites(photoId) {
+    const favoritesChildren = Array.from(favoritesContainer.children)
+    return Boolean(favoritesChildren.find((elem) => elem.id === photoId));
+}
+
 function photoItemCreator(photo) {
     const photoContainer = document.createElement('div');
     const photoElement = document.createElement('img');
@@ -31,8 +36,14 @@ function photoItemCreator(photo) {
 
     photoContainer.id = 'photo-' + photo.id;
     infoBox.innerText = photo.title;
+    
+    favoritesButton.classList.add('favorites-button')
 
-    favoritesButton.classList.add('favorites-button', 'favorites-button--empty');
+    isPhotoInFavorites(photoContainer.id) ? 
+        favoritesButton.classList.add('favorites-button--active')
+        : favoritesButton.classList.add('favorites-button--empty');
+
+
     photoContainer.classList.add('photo-container');
     infoBox.classList.add('photo-container__infobox--catalog')
     photoElement.className = 'photo-item';

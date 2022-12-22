@@ -1,5 +1,5 @@
 function favoritesRouter(button) {
-    if(button.parentNode.parentNode.id === 'favorites-container') {
+    if(button.parentNode.parentNode.id === 'favorites-container' && button.classList.contains('favorites-button')) {
         makeFavoriteButtonEmptyInCatalog(button);
         removeFromFavorites(button);
         return;
@@ -26,7 +26,6 @@ function renderEmptyComponent() {
 }
 
 function addToFavorites(button) {
-    console.log('is empty show now', isEmptyComponentShow());
     isEmptyComponentShow() && toggleEmptyComponent();
     
     const photoItem = button.parentNode.cloneNode(true);

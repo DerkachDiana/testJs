@@ -12,20 +12,11 @@ function userRouter(buttonElement) {
 
 async function renderUsers() {
     const users = await getUsers();
-    const favoritesTab = document.getElementById('favorites-container');
 
     users.forEach((user) => {
         const userContainer = userItemCreator(user);
         catalogContainer.appendChild(userContainer);
     });
-
-    catalogContainer.addEventListener('click', (e) => {
-        containerClickHandler(e.target);
-    });
-
-    favoritesTab.addEventListener('click', (e) => {
-        favoritesRouter(e.target);
-    })
 }
 
 function userItemCreator(user) {
@@ -46,4 +37,5 @@ function userItemCreator(user) {
     
     return userContainer;
 }
+
 renderUsers()

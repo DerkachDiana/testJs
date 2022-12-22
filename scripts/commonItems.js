@@ -1,4 +1,8 @@
 function containerClickHandler(element) {
+    if(element.classList.contains('photo-item')) {
+        photoClickHandler(element);
+    }
+
     if(!(element.classList.contains('button-show') || element.classList.contains('favorites-button'))) {
         return;
     }
@@ -20,6 +24,16 @@ function containerClickHandler(element) {
     }
 }
 
+function photoClickHandler(photo) {
+    const image = document.createElement('img');
+    image.src = photo.src;
+
+    image.classList.add('modal__img');
+
+    modalImageContainer.appendChild(image);
+    modal.classList.remove('modal--hide');
+}
+
 function renderShowButton() {
     const showButton = document.createElement('div');
     showButton.className = 'button-show';
@@ -27,3 +41,14 @@ function renderShowButton() {
 
     return showButton;
 }
+
+function closeModal() {
+    modal.classList.add('modal--hide');
+    modalImageContainer.querySelector('.modal__img').remove();
+}
+
+globalContainer.addEventListener('click', (e) => {
+    containerClickHandler(e.target);
+});
+
+closeModalButton.addEventListener('click', closeModal);
