@@ -1,54 +1,36 @@
-function removeRouter(buttonElement) {
-    const parentContainer = buttonElement.parentNode;
+function userRouter(buttonElement) {
+    if(buttonElement.classList.contains('button-show--hide')) {
+        insertAlbums(buttonElement.parentNode.parentNode);
 
-    if(parentContainer.classList.contains('user-item')) {
-        removeAlbums(parentContainer.parentNode);
+        return;
     }
-    if(parentContainer.classList.contains('album-item')) {
-        removePhotos(parentContainer.parentNode);
-    }
-}
 
-function insertRouter(buttonElement) {
-    const parentContainer = buttonElement.parentNode;
+    if(buttonElement.classList.contains('button-show--show')) {
+        removeAlbums(buttonElement.parentNode.parentNode);
 
-    if(parentContainer.classList.contains('user-item')) {
-        insertAlbums(parentContainer.parentNode);
-    }
-    if(parentContainer.classList.contains('album-item')) {
-        insertPhotos(parentContainer.parentNode);
+        return;
     }
 }
 
 async function renderUsers() {
     const users = await getUsers();
-    const container = document.getElementById('container');
-    const favoritesTab = document.getElementById('favorites-container');
 
     users.forEach((user) => {
         const userContainer = userItemCreator(user);
-        container.appendChild(userContainer);
+        catalogContainer.appendChild(userContainer);
     });
-
-    container.addEventListener('click', (e) => {
-        containerClickHandler(e.target);
-    });
-
-    favoritesTab.addEventListener('click', (e) => {
-        favoritesButtonClickHandler(e.target);
-    })
 }
 
 function userItemCreator(user) {
     const userContainer = document.createElement('div');
     const userItem = document.createElement('div');
-    const showButton = renderShowButton();
     const userName = document.createElement('div');
+    const showButton = renderShowButton();
 
     userName.innerText = user.name;
     userContainer.dataset.id = user.id;
 
-    userContainer.className = 'user-container';
+    userContainer.classList.add('user-container');
     userItem.classList.add('user-item');
 
     userItem.appendChild(showButton);
@@ -57,4 +39,5 @@ function userItemCreator(user) {
     
     return userContainer;
 }
+
 renderUsers()

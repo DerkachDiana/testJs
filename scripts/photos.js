@@ -19,25 +19,37 @@ async function renderPhotos(albumContainer) {
 
         photosContainer.appendChild(photoItem);
     });
-
     albumContainer.appendChild(photosContainer);
 }
 
+function isPhotoInFavorites(photoId) {
+    const favoritesChildren = Array.from(favoritesContainer.children);
+
+    return Boolean(favoritesChildren.find((elem) => elem.id === photoId));
+}
+
 function photoItemCreator(photo) {
-    const photoItem = document.createElement('div');
-    const photoElement = document.createElement('img');
+    const photoContainer = document.createElement('div');
     const favoritesButton = document.createElement('div');
+    const infoBox = document.createElement('div');
+    const photoElement = document.createElement('img');
+    
+    favoritesButton.classList.add('favorites-button');
+    photoContainer.classList.add('photo-container');
+    infoBox.classList.add('photo-container__infobox--catalog');
+    photoElement.classList.add('photo-item');
 
-    photoItem.id = 'photo-' + photo.id;
+    photoContainer.id = 'photo-' + photo.id;
 
-    favoritesButton.classList.add('favorites-button', 'favorites-button--empty');
-    photoItem.className = 'photo-container';
-    photoElement.className = 'photo-item';
-
+    isPhotoInFavorites(photoContainer.id) ? favoritesButton.classList.add('favorites-button--active')
+    : favoritesButton.classList.add('favorites-button--empty');
+    
+    infoBox.innerText = photo.title;
     photoElement.src = photo.url;
 
-    photoItem.appendChild(photoElement);
-    photoItem.appendChild(favoritesButton);
+    photoContainer.appendChild(photoElement);
+    photoContainer.appendChild(favoritesButton);
+    photoContainer.appendChild(infoBox);
 
-    return photoItem;
+    return photoContainer;
 }

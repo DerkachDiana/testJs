@@ -6,7 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="container">
+    <div class="modal modal--hide">
+        <div class="modal__close-button"></div>
+        <div class="modal__img-container"></div>
+    </div>
+    <div id="global-container" class="container">
         <div class="tabs">
             <div class="tabs-triggers">
                 <a href="#catalog" class="tabs-triggers__item">Каталог</a>
@@ -14,22 +18,33 @@
             </div>
             <div class="tabs-content">
                 <div id="catalog" class="tabs-content__item">
-                    <div id="container"></div>
+                    <div id="catalog-container"></div>
                 </div>
                 <div id="favorites" class="tabs-content__item">
-                    <div id="favorites-container"></div>
+                    <div id="favorites-container">
+                        <div class="empty-background-container empty-background--show">
+                            <div class="empty-background__image"></div>
+                            <div class="empty-background-container__text-box">
+                                <div class="empty-background-container__text-box__title">Список избранного пуст</div>
+                                <div class="empty-background-container__text-box__description">Добавляйте изображения, нажимая на звездочки</div>    
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     
+    <script src="./scripts/initialElements.js"></script>
+    <script src="./scripts/favorites.js"></script>
+    <script src="./scripts/clickHandlers.js"></script>
     <script src="./scripts/commonItems.js"></script>
     <script src="./services/photoAPI.js"></script>
     <script src="./scripts/photos.js"></script>
     <script src="./scripts/albums.js"></script>
     <script src="./services/userAPI.js"></script>
     <script src="./services/albumAPI.js"></script>
-    <script src="script.js"></script>
+    <script src="./scripts/tabs.js"></script>
     <script src="scripts/Users.js"></script>
 </body>
 </html>

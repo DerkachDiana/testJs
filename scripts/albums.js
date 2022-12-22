@@ -1,3 +1,17 @@
+function albumRouter(buttonElement) {
+    if(buttonElement.classList.contains('button-show--hide')) {
+        insertPhotos(buttonElement.parentNode.parentNode);
+
+        return;
+    }
+
+    if(buttonElement.classList.contains('button-show--show')) {
+        removePhotos(buttonElement.parentNode.parentNode);
+
+        return;
+    }
+}
+
 function insertAlbums(userContainer) {
     if(!userContainer.querySelector('.albums-container')){
         renderAlbums(userContainer);
@@ -40,8 +54,6 @@ async function renderAlbums(userContainer) {
         const albumContainer = albumItemCreator(album);
         
         albumsContainer.appendChild(albumContainer);
-    })
-
+    });
     userContainer.appendChild(albumsContainer);
-
     }
