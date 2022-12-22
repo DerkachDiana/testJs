@@ -12,15 +12,14 @@ function userRouter(buttonElement) {
 
 async function renderUsers() {
     const users = await getUsers();
-    const container = document.getElementById('container');
     const favoritesTab = document.getElementById('favorites-container');
 
     users.forEach((user) => {
         const userContainer = userItemCreator(user);
-        container.appendChild(userContainer);
+        catalogContainer.appendChild(userContainer);
     });
 
-    container.addEventListener('click', (e) => {
+    catalogContainer.addEventListener('click', (e) => {
         containerClickHandler(e.target);
     });
 

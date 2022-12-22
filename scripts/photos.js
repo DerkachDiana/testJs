@@ -1,31 +1,3 @@
-function toggleFavoriteButtonInCatalog(button) {
-    const photoContainerId = button.parentNode.id;
-    const container = document.querySelector('.container');
-    const photoInContainer = container.querySelector(`#${photoContainerId}`);
-    photoInContainer.lastElementChild.classList.toggle('favorites-button--active');
-    photoInContainer.lastElementChild.classList.toggle('favorites-button--empty');
-}
-
-function favoritesRouter(button) {
-    if(button.parentNode.parentNode.id === 'favorites-container') {
-        toggleFavoriteButtonInCatalog(button);
-        removeFromFavorites(button);
-        return;
-    }
-
-    if(button.parentNode.parentNode.classList.contains('photos-container')){
-        button.classList.toggle('favorites-button--empty');
-        button.classList.toggle('favorites-button--active');
-
-        if(button.classList.contains('favorites-button--active')) {
-            addToFavorites(button);
-            return;
-        }
-    
-        removeFromFavorites(button);
-    }
-}
-
 function insertPhotos(albumContainer) {
     if(!albumContainer.querySelector('.photos-container')){
         renderPhotos(albumContainer);
@@ -52,20 +24,24 @@ async function renderPhotos(albumContainer) {
 }
 
 function photoItemCreator(photo) {
-    const photoItem = document.createElement('div');
+    const photoContainer = document.createElement('div');
     const photoElement = document.createElement('img');
     const favoritesButton = document.createElement('div');
+    const infoBox = document.createElement('div');
 
-    photoItem.id = 'photo-' + photo.id;
+    photoContainer.id = 'photo-' + photo.id;
+    infoBox.innerText = photo.title;
 
     favoritesButton.classList.add('favorites-button', 'favorites-button--empty');
-    photoItem.className = 'photo-container';
+    photoContainer.classList.add('photo-container');
+    infoBox.classList.add('photo-container__infobox--catalog')
     photoElement.className = 'photo-item';
 
     photoElement.src = photo.url;
 
-    photoItem.appendChild(photoElement);
-    photoItem.appendChild(favoritesButton);
+    photoContainer.appendChild(photoElement);
+    photoContainer.appendChild(favoritesButton);
+    photoContainer.appendChild(infoBox);
 
-    return photoItem;
+    return photoContainer;
 }

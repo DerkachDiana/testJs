@@ -27,18 +27,3 @@ function renderShowButton() {
 
     return showButton;
 }
-
-function addToFavorites(button) {
-    const favoritesContainer = document.getElementById('favorites-container');
-    const photoItem = button.parentNode.cloneNode(true);
-
-    favoritesContainer.appendChild(photoItem);
-}
-
-function removeFromFavorites(button) {
-    const favoritesContainer = document.getElementById('favorites-container');
-    const photoContainerId = button.parentNode.id;
-
-    favoritesContainer.querySelector(`#${photoContainerId}`).remove();
-}
-
