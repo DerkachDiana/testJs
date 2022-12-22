@@ -25,7 +25,7 @@ async function renderUsers() {
     });
 
     favoritesTab.addEventListener('click', (e) => {
-        favoritesButtonClickHandler(e.target);
+        favoritesRouter(e.target);
     })
 }
 

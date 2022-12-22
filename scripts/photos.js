@@ -1,3 +1,31 @@
+function toggleFavoriteButtonInCatalog(button) {
+    const photoContainerId = button.parentNode.id;
+    const container = document.querySelector('.container');
+    const photoInContainer = container.querySelector(`#${photoContainerId}`);
+    photoInContainer.lastElementChild.classList.toggle('favorites-button--active');
+    photoInContainer.lastElementChild.classList.toggle('favorites-button--empty');
+}
+
+function favoritesRouter(button) {
+    if(button.parentNode.parentNode.id === 'favorites-container') {
+        toggleFavoriteButtonInCatalog(button);
+        removeFromFavorites(button);
+        return;
+    }
+
+    if(button.parentNode.parentNode.classList.contains('photos-container')){
+        button.classList.toggle('favorites-button--empty');
+        button.classList.toggle('favorites-button--active');
+
+        if(button.classList.contains('favorites-button--active')) {
+            addToFavorites(button);
+            return;
+        }
+    
+        removeFromFavorites(button);
+    }
+}
+
 function insertPhotos(albumContainer) {
     if(!albumContainer.querySelector('.photos-container')){
         renderPhotos(albumContainer);

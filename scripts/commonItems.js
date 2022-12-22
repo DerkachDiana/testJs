@@ -4,7 +4,7 @@ function containerClickHandler(element) {
     }
 
     if(element.classList.contains('favorites-button')) {
-        favoritesButtonClickHandler(element);  
+        favoritesRouter(element);  
     }
     const parentContainer = element.parentNode;
 
@@ -40,17 +40,5 @@ function removeFromFavorites(button) {
     const photoContainerId = button.parentNode.id;
 
     favoritesContainer.querySelector(`#${photoContainerId}`).remove();
-}
-
-function favoritesButtonClickHandler(button) {
-    button.classList.toggle('favorites-button--empty');
-    button.classList.toggle('favorites-button--active');
-
-    if(button.classList.contains('favorites-button--active')) {
-        addToFavorites(button);
-        return;
-    }
-
-    removeFromFavorites(button);
 }
 

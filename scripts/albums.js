@@ -11,7 +11,6 @@ function albumRouter(buttonElement) {
 }
 
 function insertAlbums(userContainer) {
-    console.log(userContainer);
     if(!userContainer.querySelector('.albums-container')){
         
         renderAlbums(userContainer);
