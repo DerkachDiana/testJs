@@ -2,6 +2,7 @@ function favoritesRouter(button) {
     if(button.parentNode.parentNode.id === 'favorites-container' && button.classList.contains('favorites-button')) {
         makeFavoriteButtonEmptyInCatalog(button);
         removeFromFavorites(button);
+        
         return;
     }
 
@@ -11,6 +12,7 @@ function favoritesRouter(button) {
 
         if(button.classList.contains('favorites-button--active')) {
             addToFavorites(button);
+
             return;
         }
     
