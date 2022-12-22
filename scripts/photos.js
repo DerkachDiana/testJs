@@ -19,35 +19,32 @@ async function renderPhotos(albumContainer) {
 
         photosContainer.appendChild(photoItem);
     });
-
     albumContainer.appendChild(photosContainer);
 }
 
 function isPhotoInFavorites(photoId) {
-    const favoritesChildren = Array.from(favoritesContainer.children)
+    const favoritesChildren = Array.from(favoritesContainer.children);
+
     return Boolean(favoritesChildren.find((elem) => elem.id === photoId));
 }
 
 function photoItemCreator(photo) {
     const photoContainer = document.createElement('div');
-    const photoElement = document.createElement('img');
     const favoritesButton = document.createElement('div');
     const infoBox = document.createElement('div');
+    const photoElement = document.createElement('img');
+    
+    favoritesButton.classList.add('favorites-button');
+    photoContainer.classList.add('photo-container');
+    infoBox.classList.add('photo-container__infobox--catalog');
+    photoElement.classList.add('photo-item');
 
     photoContainer.id = 'photo-' + photo.id;
-    infoBox.innerText = photo.title;
+
+    isPhotoInFavorites(photoContainer.id) ? favoritesButton.classList.add('favorites-button--active')
+    : favoritesButton.classList.add('favorites-button--empty');
     
-    favoritesButton.classList.add('favorites-button')
-
-    isPhotoInFavorites(photoContainer.id) ? 
-        favoritesButton.classList.add('favorites-button--active')
-        : favoritesButton.classList.add('favorites-button--empty');
-
-
-    photoContainer.classList.add('photo-container');
-    infoBox.classList.add('photo-container__infobox--catalog')
-    photoElement.className = 'photo-item';
-
+    infoBox.innerText = photo.title;
     photoElement.src = photo.url;
 
     photoContainer.appendChild(photoElement);

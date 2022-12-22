@@ -59,20 +59,20 @@ body {
     top: 8px;
 }
 
-.button-show--show {
-    background-image: url('./assets/icons/Open.png');
-}
-
-.button-show--hide {
-    background-image: url('./assets/icons/Close.png');
-}
-
 .favorites-button--active {
     background-image: url('./assets/icons/star_active.png');
 }
 
 .favorites-button--empty{
     background-image: url('./assets/icons/star_empty.png');
+}
+
+.button-show--show {
+    background-image: url('./assets/icons/Open.png');
+}
+
+.button-show--hide {
+    background-image: url('./assets/icons/Close.png');
 }
 
 .user-item,
@@ -151,7 +151,8 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 206px;
-    margin-inline: 106px;
+    margin-inline: 54px;
+    box-sizing: border-box;
 }
 
 .empty-background-container__text-box {

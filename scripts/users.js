@@ -1,11 +1,13 @@
 function userRouter(buttonElement) {
     if(buttonElement.classList.contains('button-show--hide')) {
         insertAlbums(buttonElement.parentNode.parentNode);
+
         return;
     }
 
     if(buttonElement.classList.contains('button-show--show')) {
         removeAlbums(buttonElement.parentNode.parentNode);
+
         return;
     }
 }
@@ -22,13 +24,13 @@ async function renderUsers() {
 function userItemCreator(user) {
     const userContainer = document.createElement('div');
     const userItem = document.createElement('div');
-    const showButton = renderShowButton();
     const userName = document.createElement('div');
+    const showButton = renderShowButton();
 
     userName.innerText = user.name;
     userContainer.dataset.id = user.id;
 
-    userContainer.className = 'user-container';
+    userContainer.classList.add('user-container');
     userItem.classList.add('user-item');
 
     userItem.appendChild(showButton);

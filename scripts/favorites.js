@@ -18,13 +18,6 @@ function favoritesRouter(button) {
     }
 }
 
-function renderEmptyComponent() {
-    const emptyBackground = document.createElement('div');
-    favoritesContainer.appendChild(emptyBackground); 
-
-    emptyBackground.classList.add('empty-background', 'empty-background--show');
-}
-
 function addToFavorites(button) {
     isEmptyComponentShow() && toggleEmptyComponent();
     
@@ -52,8 +45,8 @@ function makeFavoriteButtonEmptyInCatalog(button) {
     }
     const photoInContainer = catalogContainer.querySelector(`#${photoContainerId}`);
 
-    photoInContainer.querySelector('.favorites-button').classList.toggle('favorites-button--active');
-    photoInContainer.querySelector('.favorites-button').classList.toggle('favorites-button--empty');
+    photoInContainer.querySelector('.favorites-button').classList.remove('favorites-button--active');
+    photoInContainer.querySelector('.favorites-button').classList.add('favorites-button--empty');
 }
 
 function isFavoritesEmpty() {
@@ -69,3 +62,10 @@ function toggleEmptyComponent(){
     emptyBackgroundComponent.classList.toggle('empty-background--show');
     emptyBackgroundComponent.classList.toggle('empty-background--hide');
 };
+
+function renderEmptyComponent() {
+    const emptyBackground = document.createElement('div');
+    favoritesContainer.appendChild(emptyBackground); 
+
+    emptyBackground.classList.add('empty-background', 'empty-background--show');
+}
