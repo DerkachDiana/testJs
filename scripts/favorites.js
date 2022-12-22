@@ -26,6 +26,9 @@ function renderEmptyComponent() {
 }
 
 function addToFavorites(button) {
+    console.log('is empty show now', isEmptyComponentShow());
+    isEmptyComponentShow() && toggleEmptyComponent();
+    
     const photoItem = button.parentNode.cloneNode(true);
     const infobox = photoItem.querySelector('.photo-container__infobox--catalog');
 
@@ -39,14 +42,31 @@ function removeFromFavorites(button) {
     const photoContainerId = button.parentNode.id;
 
     favoritesContainer.querySelector(`#${photoContainerId}`).remove();
+    isFavoritesEmpty() && toggleEmptyComponent();
 }
 
 function makeFavoriteButtonEmptyInCatalog(button) {
     const photoContainerId = button.parentNode.id;
+
+    if(!catalogContainer.querySelector(`#${photoContainerId}`)) {
+        return;
+    }
     const photoInContainer = catalogContainer.querySelector(`#${photoContainerId}`);
 
     photoInContainer.querySelector('.favorites-button').classList.toggle('favorites-button--active');
     photoInContainer.querySelector('.favorites-button').classList.toggle('favorites-button--empty');
 }
 
-renderEmptyComponent();
+function isFavoritesEmpty() {
+    return Boolean(!favoritesContainer.querySelector('.photo-container')); 
+}
+
+function isEmptyComponentShow() {
+    return Boolean(favoritesContainer.querySelector('.empty-background--show'));
+}
+
+function toggleEmptyComponent(){
+    const emptyBackgroundComponent = favoritesContainer.querySelector('.empty-background-container');
+    emptyBackgroundComponent.classList.toggle('empty-background--show');
+    emptyBackgroundComponent.classList.toggle('empty-background--hide');
+};
